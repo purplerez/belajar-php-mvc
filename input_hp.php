@@ -1,9 +1,12 @@
+<?php
+    require_once "./config/config.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Input Produk</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   </head>
   <body>
@@ -17,14 +20,26 @@
                 </tr>
                 <tr>
                     <td>Seri</td>
-                    <td><input type="text" name="alamat" class="form-control"></td>
+                    <td><input type="text" name="seri" class="form-control"></td>
                 </tr>
                 <tr>
                     <td>Merk</td>
                     <td>
                         <select name="merk" class="form-select">
                             <option value="">Pilih Merk</option>
-                            <option value="Samsung">Samsung</option>
+                        <?php
+                                $query = "SELECT * FROM tb_merk"; // menampilkan semua field dari semua data yang ada di tabel tb_merk
+                                $result = mysqli_query($koneksi, $query); // mengeksekusi query yang ada di variabel query diatas
+                                if (mysqli_num_rows($result) > 0) {
+                                    while($row = mysqli_fetch_assoc($result)) {
+                        ?>
+                            <option value="<?= $row['id'] ?>"><?= $row['nama_merk'] ?></option>
+
+                        <?php
+                                    }
+                                }
+                        ?>
+
                         </select>
                     </td>
                 </tr>
@@ -33,8 +48,18 @@
                     <td>
                         <select name="kategori" class="form-select">
                             <option value="">Pilih Kategori</option>
-                            <option value="Smartphone">Smartphone</option>
-                            <option value="Tablet">Tablet</option>
+                        <?php
+                            $query2 = "SELECT * FROM tb_kategori"; // menampilkan semua field dari semua data yang ada di tabel tb_merk
+                            $result2 = mysqli_query($koneksi, $query2); // mengeksekusi query yang ada di variabel query diatas
+
+                            if(mysqli_num_rows($result2) > 0){
+                                while($rows2 = mysqli_fetch_assoc($result2)){
+                        ?>
+                            <option value="<?= $rows2['id'] ?>"><?= $rows2['nama_kategori'] ?></option>
+                        <?php
+                            }
+                            }
+                        ?>
                         </select>
                     </td>
                 </tr>
