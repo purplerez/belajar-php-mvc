@@ -10,7 +10,7 @@ if(isset($_POST['btnSubmit'])){
     // echo "Deskripsi = ".$_POST['deskripsi']."<br/>";
 
 
-    if(empty($_POST['nama'] || $_POST['seri'] || $_POST['merk'] || $_POST['kategori'] || $_POST['harga'] || $_POST['stok'] || $_POST['deskripsi']))
+    if(empty($_POST['nama']) || empty($_POST['seri']) || empty($_POST['merk']) || empty($_POST['kategori']) || empty($_POST['harga']) || empty($_POST['stok']) || empty($_POST['deskripsi']))
         {
             echo "isi seluruhnya";
         }
@@ -26,6 +26,7 @@ if(isset($_POST['btnSubmit'])){
         // echo "INSERT INTO tb_produk VALUES (null, '$nama', '$seri', $merk, $kat, '$desk', null, $harga, $stok)";
         mysqli_query($koneksi, "INSERT INTO tb_produk VALUES (null, '$nama', '$seri', $merk, $kat, '$desk', null, $harga, $stok)");
 
-        header("location : ../input_hp.php");
+        header("Location: input_hp.php");
+        exit;
     }
 }
