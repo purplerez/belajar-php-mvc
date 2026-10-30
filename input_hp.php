@@ -1,5 +1,6 @@
 <?php
     require_once "./config/config.php";
+    require_once "./config/proses.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,11 +13,11 @@
   <body>
     <div class="container">
          <h1>INPUT PRODUK</h1>
-        <form action="" method="">
+        <form action="" method="post">
             <table class="table">
                 <tr>
                     <td>Nama Produk</td>
-                    <td><input type="text" name="nama" class="form-control"></td>
+                    <td><input type="text" name="nama" class="form-control" required></td>
                 </tr>
                 <tr>
                     <td>Seri</td>
@@ -29,7 +30,9 @@
                             <option value="">Pilih Merk</option>
                         <?php
                                 $query = "SELECT * FROM tb_merk"; // menampilkan semua field dari semua data yang ada di tabel tb_merk
+
                                 $result = mysqli_query($koneksi, $query); // mengeksekusi query yang ada di variabel query diatas
+                                
                                 if (mysqli_num_rows($result) > 0) {
                                     while($row = mysqli_fetch_assoc($result)) {
                         ?>
@@ -77,7 +80,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="submit" value="Simpan" class="btn btn-primary"></td>
+                    <td><input type="submit" name="btnSubmit" value="Simpan" class="btn btn-primary"></td>
                 </tr>
             </table>
         </form>
